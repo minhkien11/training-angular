@@ -1,0 +1,52 @@
+<div class="card">
+    <div class="card-body mx-auto" style="width: 30%;">
+        <div class="row">
+            <div class="form-group col-8">
+                <h6>Thông tin chi tiết</h6>
+            </div>
+            <div class="form-group col-4">
+                <button class="btn btn-danger float-right" (click)="logOut()">
+                    Logout
+                </button>
+            </div>
+        </div>
+        <div>
+            <p style="color: red;">{{errorMess}}</p>
+        </div>
+        <div>
+            <div class="form-group row">
+                <label class="col-form-label col-2">ID </label>
+                <input type="text" [(ngModel)]="user.ID" class="form-control col-6" readonly />
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-2">Tên </label>
+                <input type="text" [(ngModel)]="user.Name" class="form-control col-6" />
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-2">Email </label>
+                <input type="text" [(ngModel)]="user.Email" class="form-control col-6" />
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-2">Tel </label>
+                <input type="text" [(ngModel)]="user.Tel" class="form-control col-6" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-4">
+                <button class="btn btn-info float-right" (click)="onEditClick()">
+                    Edit
+                </button>
+            </div>
+            <div class="form-group col-4">
+                <button class="btn btn-dark" [routerLink]="['/confirm', 'Delete']" [state]="{user: user}">
+                    Delete
+                </button>
+            </div>
+            <div class="form-group col-4">
+                <button class="btn btn-secondary float-right" routerLink="/list">
+                    Back
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

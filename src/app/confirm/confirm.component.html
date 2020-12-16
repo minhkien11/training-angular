@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="card-body mx-auto" style="width: 30%;">
+        <div class="row">
+            <div class="form-group col-8">
+                <h6>Xác nhận thông tin</h6>
+            </div>
+            <div class="form-group col-4">
+                <button class="btn btn-danger float-right" (click)="logOut()">
+                    Logout
+                </button>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top: 2rem">
+            <table class="table table-bordered">
+                <tbody style="text-align: center;">
+                    <tr *ngIf="user.ID">
+                        <th style="width: 15%;">ID</th>
+                        <td>{{user.ID}}</td>
+                    </tr>
+                    <tr>
+                        <th>Tên</th>
+                        <td>{{user.Name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{user.Email}}</td>
+                    </tr>
+                    <tr>
+                        <th>Tel</th>
+                        <td>{{user.Tel}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="form-group col-6">
+                <button class="btn btn-info float-right" (click)="onAccept()">
+                    {{action}}
+                </button>
+            </div>
+            <div class="form-group col-6">
+                <button class="btn btn-secondary" routerLink="/list">
+                    Back
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
