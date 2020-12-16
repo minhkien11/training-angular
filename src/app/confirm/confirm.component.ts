@@ -20,6 +20,7 @@ export class ConfirmComponent implements OnInit {
 
     action = "";
     user: any = {};
+    mess = "";
 
     ngOnInit() {
         //Lấy thông tin user và tên chức năng từ param
@@ -27,6 +28,20 @@ export class ConfirmComponent implements OnInit {
         this.activeRoute.paramMap.subscribe(param => {
             this.action = param.get('action')!;
         })
+        switch(this.action) {
+            case "Create": {
+                this.mess = "Tạo mới user: " + this.user.Name;
+                break;
+            }
+            case "Edit": {
+                this.mess = "Cập nhật thông tin user: " + this.user.Name;
+                break;
+            }
+            case "Delete": {
+                this.mess = "Xóa thông tin user: " + this.user.Name;
+                break;
+            }
+        }
     }
 
     onAccept() {
@@ -35,7 +50,7 @@ export class ConfirmComponent implements OnInit {
                 //Tạo mới
                 this.aService.createNew<responseData>(this.user)
                     .subscribe(data => {
-                        this.route.navigateByUrl('/alert', { state: {message: data.message}})
+                        this.route.navigateByUrl('/alert', { state: { message: data.message } })
                     })
                 break;
             }
@@ -43,7 +58,7 @@ export class ConfirmComponent implements OnInit {
                 //Cập nhật
                 this.aService.editExist<responseData>(this.user)
                     .subscribe(data => {
-                        this.route.navigateByUrl('/alert', { state: {message: data.message}})
+                        this.route.navigateByUrl('/alert', { state: { message: data.message } })
                     })
                 break;
             }
@@ -51,7 +66,7 @@ export class ConfirmComponent implements OnInit {
                 //Xóa
                 this.aService.deleteExist<responseData>(this.user.ID)
                     .subscribe(data => {
-                        this.route.navigateByUrl('/alert', { state: {message: data.message}})
+                        this.route.navigateByUrl('/alert', { state: { message: data.message } })
                     })
                 break;
             }
