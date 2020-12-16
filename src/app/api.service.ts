@@ -8,7 +8,7 @@ export class ApiService {
 
     }
 
-    private apiRoute = "http://localhost:8034/api/";
+    private apiRoute = "https://localhost:8036/api/";
 
     //Hàm gọi api login
     login<T>(loginId: string, password: string) {
@@ -55,7 +55,7 @@ export class ApiService {
     //Hàm gọi api edit
     editExist<T>(user: Object) {
 
-        return this.http.put<T>(this.apiRoute + 'Users/Edit',
+        return this.http.post<T>(this.apiRoute + 'Users/Edit',
             JSON.stringify(user),
             {
                 headers: new HttpHeaders(
@@ -68,6 +68,11 @@ export class ApiService {
     //Hàm gọi api delete
     deleteExist<T>(userId: string) {
 
-        return this.http.delete<T>(this.apiRoute + 'Users/' + userId)
+        //Set param
+        let deleteParams = new HttpParams()
+            .set('userId', userId);
+
+        //Gọi api
+        return this.http.post<T>(this.apiRoute + 'Users/Delete', deleteParams)
     }
 }
